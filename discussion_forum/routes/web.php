@@ -15,12 +15,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Dsicussions
-Route::get('discussions','ThreadController@index')->name('home');
-Route::get('discussions/{id}','ReplyController@index')->name('threads.detail');;
-Route::post('discussions','ThreadController@store')->name('threads.create');
-Route::post('discussions/{id}','ThreadController@edit')->name('threads.edit');
+
+//show discussion
+Route::get('discussions','ThreadsController@index')->name('home');
+Route::get('discussions/{id}','RepliesController@index')->name('threads.detail');;
+
+//create or update
+Route::post('discussions','ThreadsController@store')->name('threads.create');
+Route::post('discussions/{thread}/replies', 'RepliesController@store')->name('threads.replies');
+Route::post('discussions/{thread}','ThreadsController@update')->name('threads.update');
+Route::post('reply/{reply}','RepliesController@update')->name('replies.update');
 
 // Delete thread or reply
-Route::get('thread/{id}','ThreadController@delete')->name('threads.delete');
-Route::get('reply/{id}','ReplyController@delete')->name('replies.delete');
+Route::get('thread/{id}','ThreadsController@delete')->name('threads.delete');
+Route::get('reply/{reply}','RepliesController@delete')->name('replies.delete');

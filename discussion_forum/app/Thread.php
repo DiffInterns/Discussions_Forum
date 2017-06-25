@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Reply;
+use App\Topic;
+use App\User;
 
 class Thread extends Model
 {
@@ -10,10 +13,23 @@ class Thread extends Model
 	protected $guarded = [];
    public function replies()
    {
-   		return $this->hasMany(Replies::class);
+   		return $this->hasMany(Reply::class);
    }
     public function topic()
     {
     	return $this->belongsTo(Topic::class);
     }
+     public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function addReply($reply)
+   {
+    
+      $reply=$this->replies()->create($reply);
+
+      return $reply;
+       
+
+   }
 }

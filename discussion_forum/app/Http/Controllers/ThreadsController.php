@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Thread;
+use App\Reply;
 
 class ThreadController extends Controller
 {
     //
     public function __construct()
      {
-         $this->middleware('auth')->except(['index']);;
+         $this->middleware('auth')->except(['index']);
      }
     public function index()
     {
@@ -26,6 +28,7 @@ class ThreadController extends Controller
 
     public function store()
     {
+        $this->validate(request(), ['body' => 'required']);
     	Thread::create([
 		'body'=>request('body'),
 		'topic'=>request('topic'),
@@ -35,6 +38,22 @@ class ThreadController extends Controller
 
          return back();
     }
+
+        public function update(Thread $thread)
+    {
+         if (auth()->id() != $thread->user_id) {
+            $message = 'You can not update this thread';
+            return redirect()->route('threads.detail')->with(['message' => $message]);
+            }
+        
+         $this->validate(request(), ['body' => 'required']);
+
+            $thread->body = Input::get('body');
+            $thread->save();
+
+            return redirect()->route('threads.detail')
+    }
+
 
      public function delete($id)
     {
