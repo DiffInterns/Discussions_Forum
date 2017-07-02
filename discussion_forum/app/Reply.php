@@ -8,7 +8,7 @@ use App\Thread;
 class Replies extends Model
 {
     //
-    protected $primaryKey = 'id';
+    //protected $primaryKey = 'id';
 	protected $guarded = [];
 	
     public function thread()

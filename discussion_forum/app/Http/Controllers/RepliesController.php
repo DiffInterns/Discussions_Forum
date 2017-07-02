@@ -17,8 +17,10 @@ class ReplyController extends Controller
 
      public function index($id)
     {
-    	$replies= Reply::find('thread_id',$id);
-    	return view('Discussion/details',compact('replies'));
+    	$replies= Reply::findorFail('thread_id',$id);
+        return Response::json([
+            'data'=> $replies->toArray()],200);
+    	//return view('Discussion/details',compact('replies'));
      
     }
 

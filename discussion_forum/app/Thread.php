@@ -9,7 +9,7 @@ use App\User;
 
 class Thread extends Model
 {
-	protected $primaryKey = 'id';
+	//protected $primaryKey = 'id';
 	protected $guarded = [];
    public function replies()
    {

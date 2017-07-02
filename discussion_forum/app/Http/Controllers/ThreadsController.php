@@ -15,8 +15,11 @@ class ThreadController extends Controller
      }
     public function index()
     {
-    	$discussions= Thread::latest()->get();
-    	return view('Discussion/index',compact('discussions'));
+    	$discussions= Thread::latest()->get();//it will fetch all the results in desc order by created_at.
+         return Response::json([
+            'data'=> $discussions->toArray()
+            ],200);
+    	//return view('Discussion/index',compact('discussions'));
      
     }
 
@@ -58,7 +61,7 @@ class ThreadController extends Controller
      public function delete($id)
     {
        
-      $thread = Thread::find($id);
+      $thread = Thread::findorFail($id);
      
         if (auth()->id() != $thread->user_id) {
             $message = 'You can not delete this thread';
