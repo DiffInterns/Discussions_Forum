@@ -18,6 +18,7 @@ Route::get('/', function () {
 
 //show discussion
 Route::get('discussions','ThreadsController@index')->name('home');
+Route::get('discussion/{topic}','ThreadsController@getThreadsByTopic');
 Route::get('discussions/{id}','RepliesController@index')->name('threads.detail');;
 
 //create or update

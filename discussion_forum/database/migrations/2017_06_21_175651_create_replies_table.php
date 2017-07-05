@@ -19,13 +19,12 @@ class CreateRepliesTable extends Migration
             $table->integer('user_id');
             $table->integer('thread_id');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('thread_id')->references('id')->on('threads')->onDelete('cascade');
+          //  $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+           // $table->foreign('thread_id')->references('id')->on('threads')->onDelete('cascade');
             $table->softDeletes();
         });
     }
-        });
-    }
+        
 
     /**
      * Reverse the migrations.

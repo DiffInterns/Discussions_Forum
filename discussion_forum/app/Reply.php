@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Thread;
 
-class Replies extends Model
+class Reply extends Model
 {
     //
     //protected $primaryKey = 'id';

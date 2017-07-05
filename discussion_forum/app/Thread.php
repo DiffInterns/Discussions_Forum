@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Reply;
-use App\Topic;
+//use App\Topic;
 use App\User;
 
 class Thread extends Model
@@ -15,10 +15,7 @@ class Thread extends Model
    {
    		return $this->hasMany(Reply::class);
    }
-    public function topic()
-    {
-    	return $this->belongsTo(Topic::class);
-    }
+    
      public function user()
     {
         return $this->belongsTo(User::class);
